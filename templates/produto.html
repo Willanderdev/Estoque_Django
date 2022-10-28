@@ -1,0 +1,77 @@
+{% comment %} <!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <title>Produto</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <nav class="navbar navbar-default justify-content-end">
+            <div class="nav">
+                <a class="navbar-brand" href="{% url 'index' %}">Home</a>
+            </div>
+        </nav>
+        <br>
+        <h1>Produto</h1>
+        <br>
+
+        <form action="{% url 'produto' %}" method="post" class="form" autocomplete="off" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="id_nome">Nome</label>
+                <input type="text" name="nome" class="form-control" required id="id_nome" placeholder="Nome">
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="id_preço">Preço</label>
+                <input type="E-mail" name="preco" class="form-control" required id="id_preço" placeholder="Preço">
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="id_estoque">Estoque</label>
+                <input type="text" name="estoque" class="form-control" required id="id_estoque" placeholder="Estoque">
+            </div>
+            <br>
+            <label class="btn btn-primary" for="my-file-selector">
+                <input name="imagem" id="my-file-selector" type="file" style="display:none"
+                    onchange="$('#upload-file-info').text(this.files[0].name)">
+                upload image
+            </label>
+            <span class='label label-info' id="upload-file-info"></span>
+            <br><br>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </div>
+            <br>
+            {% if messages %}
+            {%for message in messages %}
+            <div class="alert alert-primary" role="alert">
+                {{message}}
+            </div>
+            {%endfor%}
+            {% endif %}
+        </form>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html> {% endcomment %}
