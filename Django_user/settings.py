@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'Django_user.urls'
+ROOT_URLCONF = 'usuarios.urls'
 
 TEMPLATES = [
     {
@@ -128,5 +128,5 @@ MEDIA_URL = 'media/'
 
 AUTH_USER_MODEL = 'usuarios.CustomUsuario'
 
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = '/estoque'
 LOGOUT_REDIRECT_URL = 'index'

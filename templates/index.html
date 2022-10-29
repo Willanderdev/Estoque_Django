@@ -1,68 +1,80 @@
 {% extends 'base.html' %}
-
 {% block content %}
- <div class="container">
-        <nav class="navbar navbar-default">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="{% url 'index' %}">Home</a>
-            </div>
-            <div>
-                <ul class="nav">
-                    {% comment %} <li><a class="nav-item nav-link" href="{% url 'produto' %}">Produtos</a></li>
-                    <li><a class="nav-item nav-link" href="{% url 'contato' %}">Contato</a></li> {% endcomment %}
-                </ul>
-            </div>
 
-        </nav>
-        <br><br>
-        <div>
-            <h1>Controle de Estoque</h1>
+<div class="container">
+    <h1>Controle de Estoque</h1>
+    {% if user.is_anonymous %}
+    <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+    {% else %}
+        <div class="alert alert-primary" role="alert">
+            seja bem vindo {{ user.get_full_name }}!
         </div>
-        <br><br>
-        <table class="table">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Preço</th>
-                    <th scope="col">Estoque</th>
-                    <th scope="col">Editar</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% comment %} {%for i in produtos %}
-                <tr>
-                    <th scope="row">{{i.id}}</th>
-                    <td><a href="#modal{{i.id}}" data-toggle="modal">{{i.nome}}</a></td>
-                    <td>{{i.preco}}</td>
-                    <td>{{i.estoque}}</td>
-                    <td><a href="#">Edit</a></td>
-                </tr>
-
-                <div class="modal fade bdéxample-modal-lg show" id="modal{{i.id}}" tabindex="-1" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body" id="dynamic-content">
-                                <img src="{{ i.imagem.url }}" class="img-fluid" alt="{{i.nome}}">
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{% url 'index' %}">Home</a>
+                </div>
+                <div>
+                    <ul class="nav">
+                        <li><a class="nav-item nav-link" href="#">Produtos</a></li>
+                        <li><a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a></li>
+                        {% comment %} {% url 'produto' %} {% endcomment %}
+                    </ul>
+                </div>
+        
+            </nav>
+            <br><br>
+            <div>
+                <h1>Controle de Estoque</h1>
+            </div>
+            <br><br>
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Preço</th>
+                        <th scope="col">Estoque</th>
+                        <th scope="col">Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% comment %} {%for i in produtos %}
+                    <tr>
+                        <th scope="row">{{i.id}}</th>
+                        <td><a href="#modal{{i.id}}" data-toggle="modal">{{i.nome}}</a></td>
+                        <td>{{i.preco}}</td>
+                        <td>{{i.estoque}}</td>
+                        <td><a href="#">Edit</a></td>
+                    </tr>
+        
+                    <div class="modal fade bdéxample-modal-lg show" id="modal{{i.id}}" tabindex="-1" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+        
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="dynamic-content">
+                                    <img src="{{ i.imagem.url }}" class="img-fluid" alt="{{i.nome}}">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                {%endfor%} {% endcomment %}
-            </tbody>
-        </table>
-        {% comment %} {% if messages %}
-        {%for message in messages %}
-        <div class="alert alert-primary" role="alert">
-            {{message}}
+                    {%endfor%} {% endcomment %}
+                </tbody>
+            </table>
+            {% comment %} {% if messages %}
+            {%for message in messages %}
+            <div class="alert alert-primary" role="alert">
+                {{message}}
+            </div>
+            {%endfor%}
+            {% endif %} {% endcomment %}
         </div>
-        {%endfor%}
-        {% endif %} {% endcomment %}
-    </div>
-    {% endblock %}
+    {% endif %}
+
+</div>
+{% endblock %}
