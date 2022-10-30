@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 from .forms import CustomUsuarioCreateForm, CustomUsuarioChangeForm
-from .models import CustomUsuario
+from .models import CustomUsuario, Produto
 
 
 @admin.register(CustomUsuario)
@@ -19,3 +19,8 @@ class CustomUsuarioAdmin(UserAdmin):
          'is_superuser', 'groups', 'user_permissions')}),
         ('Datas Importantes', {'fields': ('last_login', 'date_joined')}),
     )
+
+
+@admin.register(Produto)
+class ProdutoAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'preco', 'estoque', 'imagem')

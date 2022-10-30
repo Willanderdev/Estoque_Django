@@ -5,14 +5,14 @@
     <div class="container">
         <nav class="navbar navbar-default justify-content-end">
             <div class="nav">
-                <a class="navbar-brand" href="{% url 'estoque' %}">Home</a>
+                <a class="navbar-brand" href="{% url 'index' %}">Home</a>
             </div>
         </nav>
         <br>
         <h1>Produto</h1>
         <br>
 
-        <form action="#" method="post" class="form" autocomplete="off" enctype="multipart/form-data">
+        <form action="{% url 'produto' %}" method="post" class="form" autocomplete="off" enctype="multipart/form-data">
             {% csrf_token %}
 
             <div class="form-group">

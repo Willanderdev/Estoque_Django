@@ -33,7 +33,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% comment %} {%for i in produtos %}
+                 {%for i in produto %}
                 <tr>
                     <th scope="row">{{i.id}}</th>
                     <td><a href="#modal{{i.id}}" data-toggle="modal">{{i.nome}}</a></td>
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                 </div>
-                {%endfor%} {% endcomment %}
+                {%endfor%} 
             </tbody>
         </table>
         {% comment %} {% if messages %}
