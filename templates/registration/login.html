@@ -2,17 +2,16 @@
 {% load static %}
 {% block content %}
 <div class="container">
-  <div class="form form-control">
-    <div class="row">
-      <div class="login offset-4 col-lg-4 " align="center">
-
+  <div class="row">
+    <div class="col-xs-12 offset-4 col-md-4 login" align="center">
+      <div class="form form-control">
         <form class="form-signin" method="post" autocomplete="off">
           {% csrf_token %}
           <!-- Email input -->
           <div class="form-outline mb-4">
             <h1 style="color: red">Login</h1>
             <br>
-            <input type="email" name="username" id="name" class="form-control" placeholder="E-mail"/>
+            <input type="email" name="username" id="name" class="form-control" placeholder="E-mail" />
             <label class="form-label" for="username"></label>
           </div>
 
@@ -45,7 +44,7 @@
           <div class="text-center">
             <p>Not a member? <a href="#!">Register</a></p>
             <p>or sign up with:</p>
-            
+
             <button type="button" class="btn btn-primary btn-floating mx-1">
               <i class="lni lni-linkedin-original"></i>
             </button>
@@ -56,7 +55,9 @@
 
           </div>
         </form>
+
       </div>
+
     </div>
   </div>
 </div>
