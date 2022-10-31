@@ -20,7 +20,7 @@
     {% else %}
     <br>
     <div class="alert alert-primary" role="alert">
-        seja bem vindo {{ user.get_full_name }}!
+        seja bem vindo {{ user.first_name }}!
     </div>
     <div class="container">
         <nav class="navbar navbar-default">
@@ -29,7 +29,7 @@
             </div>
             <div>
                 <ul class="nav">
-                    <li><a class="nav-item nav-link" href="{% url 'produto' %}">Produtos</a></li>
+                    <li><a class="nav-item nav-link" href="{% url 'produto' %}">Cadastrar Produtos</a></li>
                     <li><a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a></li>
 
                 </ul>
