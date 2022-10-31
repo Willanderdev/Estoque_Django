@@ -1,1 +1,1 @@
-web: gunicorn usuarios_wsgi
+web: gunicorn usuarios:app
