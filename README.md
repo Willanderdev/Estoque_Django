@@ -12,6 +12,8 @@ foi implementado paginação...
 
 esta aplicação é parte de um ecommerce que estou desenvolvendo, portanto ainda não estar concluído.
 
+https://dark-cat-32830.herokuapp.com/
+
 
 
 
