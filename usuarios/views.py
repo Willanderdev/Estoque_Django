@@ -10,24 +10,19 @@ from .models import Produto
 
 class IndexView(ListView):
     model: Produto
-    paginate_by: 3
-    queryset = Produto.objects.all()
     context_object_name = 'produtos'
     template_name = 'index.html'
-    
-    ordering = 'id'
+    paginate_by = 4
 
-    # def get_context_data(self, **kwargs):
-    #     context = super(IndexView, self).get_context_data(**kwargs)
-    #     context['produtos'] = Produto.objects.all()
-    #     return context
+    def get_queryset(self):
+        return Produto.objects.all()
 
 
 class CreateProdutoView(CreateView):
     model = Produto
     template_name = 'produto.html'
     fields = ['nome', 'preco', 'estoque', 'imagem']
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('produto')
 
 
 class UpdateProdutoView(UpdateView):

@@ -4,31 +4,35 @@
 
 {% block content %}
 
-    <div class="container">
-        <nav class="navbar navbar-default justify-content-end">
-            <div class="nav">
-                <a class="navbar-brand" href="{% url 'index' %}">Home</a>
-            </div>
-        </nav>
-        <br>
-        <h1>Produto</h1>
-        <br>
+<div class="container">
+    <nav class="navbar navbar-default justify-content-end">
+        <div class="nav">
+            <a class="navbar-brand" href="{% url 'index' %}">Home</a>
+        </div>
+    </nav>
+    <br>
+    <h1>Produto</h1>
+    <br>
 
-        <form method="post" class="form" autocomplete="off" enctype="multipart/form-data">
-            {% csrf_token %}
-            {% bootstrap_form form %}
-    {% if user.is_staff %}
-    <input type="submit" value="Update">
-    {% endif %}
-</form>
-            {% comment %} {% if messages %}
-            {%for message in messages %}
-            <div class="alert alert-primary" role="alert">
-                {{message}}
-            </div>
-            {%endfor%}
-            {% endif %} {% endcomment %}
-        
-
+    <form method="post" class="form" autocomplete="off" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% if user.is_staff %}
+        <input type="submit" value="Update">
+        {%else%}
+        <b>
+            <p style="color: red">você não tem permissao pra acessar esta área.</p>
+        </b>
+        {% endif %}
+    </form>
+    {% comment %} {% if messages %}
+    {%for message in messages %}
+    <div class="alert alert-primary" role="alert">
+        {{message}}
     </div>
+    {%endfor%}
+    {% endif %} {% endcomment %}
+
+
+</div>
 {% endblock %}

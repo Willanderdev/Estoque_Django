@@ -8,12 +8,12 @@
     {% if user.is_anonymous %}
     <div class="container">
         <div class="row">
-            <div class="offset-3 col-lg-6  login" align="center">
+            <div onload="login()" class="offset-3 col-lg-6  login" align="center">
                 <h1>Controle de Estoque</h1>
                 <br>
-                <h4>Você precisar estar logado</h4>
+                <h4>Você não estar logado</h4>
                 <br><br>
-                <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+                <a class="btn btn-primary" href="{% url 'login' %}">Fazer Login</a>
             </div>
         </div>
     </div>
@@ -59,11 +59,25 @@
                     <td><a href="#modal{{i.id}}" data-toggle="modal">{{i.nome}}</a></td>
                     <td>{{i.preco}}</td>
                     <td>{{i.estoque}}</td>
-                    <td data-toggle="modal" data-target="#modalExemplo">
+                    <td>
                         <a class="btn btn-warning" data-toggle="modal" href="{% url 'upd_produto' i.id %}">Edit</a>
-                        <a class="btn btn-danger" href="{% url 'del_produto' pk=i.id %}">Del</a>
+                        <a data-toggle="modal" class="btn btn-danger" href="{% url 'del_produto' pk=i.id %}">Del</a>
                     </td>
                 </tr>
+
+                <div id="modalExemplo" class="modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
 
                 <div class="modal fade bdéxample-modal-lg show" id="modal{{i.id}}" tabindex="-1" role="dialog">
                     <div class="modal-dialog">
