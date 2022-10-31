@@ -4,22 +4,22 @@
 <div class="container">
   <div class="form form-control">
     <div class="row">
-      <div class="login offset-4 col-lg-4 ">
+      <div class="login offset-4 col-lg-4 " align="center">
 
         <form class="form-signin" method="post" autocomplete="off">
           {% csrf_token %}
           <!-- Email input -->
           <div class="form-outline mb-4">
-            <h1>Login</h1>
+            <h1 style="color: red">Login</h1>
             <br>
-            <input type="email" name="username" id="name" class="form-control" />
-            <label class="form-label" for="username">E-mail</label>
+            <input type="email" name="username" id="name" class="form-control" placeholder="E-mail"/>
+            <label class="form-label" for="username"></label>
           </div>
 
           <!-- Password input -->
           <div class="form-outline mb-4">
-            <input type="password" name="password" id="form2Example2" class="form-control" />
-            <label class="form-label" for="password">Password</label>
+            <input type="password" name="password" id="form2Example2" class="form-control" placeholder="Password" />
+            <label class="form-label" for="password"></label>
           </div>
 
           <!-- 2 column grid layout for inline styling -->

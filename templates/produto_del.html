@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+
+    <form method="post" class="form" autocomplete="off" enctype="multipart/form-data">
+        {% csrf_token %}
+       
+        <p>Tem certeza que deseja deletar o produto "{{object}}</p>
+        {% if user.is_staff %}
+        <button type="submit" class="btn btn-danger">Confirmar</button>
+        {% endif %}
+        <button type="submit" class="btn btn-warning"><a href="{% url 'index' %}">Cancelar</a></button>
+    </form>
+
+{% endblock %}

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
 
 <div class="container">
@@ -9,7 +10,9 @@
         <div class="row">
             <div class="offset-3 col-lg-6  login" align="center">
                 <h1>Controle de Estoque</h1>
+                <br>
                 <h4>Você precisar estar logado</h4>
+                <br><br>
                 <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
             </div>
         </div>
@@ -26,34 +29,7 @@
             </div>
             <div>
                 <ul class="nav">
-                    {% if user.is_staff %}
                     <li><a class="nav-item nav-link" href="{% url 'produto' %}">Produtos</a></li>
-                    {% else %}
-                    <li><a class="nav-item nav-link" href="#modal">Produtos</a></li>
-
-
-                    <div id="#modal" class="modal" tabindex="-1" role="dialog">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Modal title</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>você não tem autorização pra acessar esta área!</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {% endif %}
-
                     <li><a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a></li>
 
                 </ul>
@@ -65,6 +41,7 @@
             <h1>Controle de Estoque</h1>
         </div>
         <br><br>
+
         <table class="table">
             <thead class="thead-light">
                 <tr>
@@ -76,13 +53,16 @@
                 </tr>
             </thead>
             <tbody>
-                {%for i in produtos %}
+                {% for i in produtos %}
                 <tr>
                     <th scope="row">{{i.id}}</th>
                     <td><a href="#modal{{i.id}}" data-toggle="modal">{{i.nome}}</a></td>
                     <td>{{i.preco}}</td>
                     <td>{{i.estoque}}</td>
-                    <td><a href="{% url 'upd_produto' i.pk %}">Edit</a></td>
+                    <td data-toggle="modal" data-target="#modalExemplo">
+                        <a class="btn btn-warning" data-toggle="modal" href="{% url 'upd_produto' i.id %}">Edit</a>
+                        <a class="btn btn-danger" href="{% url 'del_produto' pk=i.id %}">Del</a>
+                    </td>
                 </tr>
 
                 <div class="modal fade bdéxample-modal-lg show" id="modal{{i.id}}" tabindex="-1" role="dialog">
@@ -103,15 +83,48 @@
                 {%endfor%}
             </tbody>
         </table>
-        {% comment %} {% if messages %}
+
+
+        <nav aria-label="navegacao-paginacao">
+            <ul class="pagination">
+
+                <!-- botao anterios -->
+                {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number}}">&laquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+                {% endif %}
+
+                <!-- centro -->
+                {% for num in paginator.page_range %}
+                {% if page_obj.number == num %}
+                <li class="page-item active"><a class="page-link" href="#">{{num}}</a></li>
+                {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{num}}">{{num}}</a></li>
+                {% endif %}
+                {% endfor %}
+
+                <!-- next -->
+                {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">&raquo;</a></li>
+                {% else %}
+                <li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+
+
+        {% if messages %}
         {%for message in messages %}
         <div class="alert alert-primary" role="alert">
             {{message}}
         </div>
         {%endfor%}
-        {% endif %} {% endcomment %}
+        {% endif %}
     </div>
-    {% endif %}
 
+    {% endif %}
 </div>
+
 {% endblock %}
