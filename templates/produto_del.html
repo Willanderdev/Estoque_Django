@@ -2,18 +2,24 @@
 {% load bootstrap5 %}
 
 {% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 login" align="center">
+            <form method="post" class="form" autocomplete="off" enctype="multipart/form-data">
+                {% csrf_token %}
 
-<form method="post" class="form" autocomplete="off" enctype="multipart/form-data">
-    {% csrf_token %}
+                <p>Tem certeza que deseja deletar o produto {{object}}.</p>
+                {% if user.is_staff %}
+                <button type="submit" class="btn btn-danger">Confirmar</button>
+                {%else%}
+                <b>
+                    <p style="color: red">você não tem permissao pra acessar esta área.</p>
+                </b>
+                {% endif %}
+                <a type="buttom" class="btn btn-warning" href="{% url 'index' %}">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
 
-    <p>Tem certeza que deseja deletar o produto {{object}}.</p>
-    {% if user.is_staff %}
-    <button type="submit" class="btn btn-danger">Confirmar</button>
-    {%else%}
-    <b>
-        <p style="color: red">você não tem permissao pra acessar esta área.</p>
-    </b>
-    {% endif %}
-    <a type="buttom" class="btn btn-warning" href="{% url 'index' %}">Cancelar</a>
-
-    {% endblock %}
+{% endblock %}
